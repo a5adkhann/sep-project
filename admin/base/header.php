@@ -1,3 +1,7 @@
+<?php
+include("./db/db_connection.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +52,7 @@
                     <!-- Topbar Brand Logo -->
                     <div class="logo-topbar">
                         <!-- Logo light -->
-                        <a href="index.html" class="logo-light">
+                        <a href="index.php" class="logo-light">
                             <span class="logo-lg">
                                 ADMIN
                             </span>
@@ -58,7 +62,7 @@
                         </a>
 
                         <!-- Logo Dark -->
-                        <a href="index.html" class="logo-dark">
+                        <a href="index.php" class="logo-dark">
                             <span class="logo-lg">
                                 ADMIN
                             </span>
@@ -110,7 +114,6 @@
                     <li class="dropdown">
                         <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
-                            <img src="./images/flags/us.jpg" alt="user-image" class="me-0 me-sm-1" height="12">
                             <span class="align-middle d-none d-lg-inline-block">English</span> <i
                                 class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i>
                         </a>
@@ -118,25 +121,21 @@
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item">
-                                <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12">
                                 <span class="align-middle">German</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item">
-                                <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12">
                                 <span class="align-middle">Italian</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item">
-                                <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12">
                                 <span class="align-middle">Spanish</span>
                             </a>
 
                             <!-- item-->
                             <a href="javascript:void(0);" class="dropdown-item">
-                                <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12">
                                 <span class="align-middle">Russian</span>
                             </a>
 
@@ -448,7 +447,7 @@
         <div class="leftside-menu">
 
             <!-- Brand Logo Light -->
-            <a href="index.html" class="logo logo-light">
+            <a href="index.php" class="logo logo-light">
                 <span class="logo-lg" style="font-size: 30px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">
                     ADMIN
                 </span>
@@ -457,7 +456,7 @@
             </a>
 
             <!-- Brand Logo Dark -->
-            <a href="index.html" class="logo logo-dark">
+            <a href="index.php" class="logo logo-dark">
                 <span class="logo-lg">
                     <img src="./images/logo1.png" alt="dark logo">
                 </span>
@@ -492,7 +491,7 @@
                         <div class="collapse" id="sidebarCategories">
                             <ul class="side-nav-second-level">
                                 <li><a href="./add_category.php">Add Category</a></li>
-                                <li><a href="./view_category.php">View Category</a></li>
+                                <li><a href="./view_categories.php">View Category</a></li>
                             </ul>
                         </div>
                     </li>
@@ -508,7 +507,7 @@
                         <div class="collapse" id="sidebarProducts">
                             <ul class="side-nav-second-level">
                                 <li><a href="./add_product.php">Add Product</a></li>
-                                <li><a href="./view_product.php">View Product</a></li>
+                                <li><a href="./view_products.php">View Product</a></li>
                             </ul>
                         </div>
                     </li>

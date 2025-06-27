@@ -7,46 +7,101 @@ include("./base/header.php");
         <!-- Start Content-->
         <div class="container-fluid">
             <div class="card mt-3">
-                <div class="card-header">
-                    <h2>All Orders</h2>
+                <div class="row">
+                    <div class="card-header row">
+                        <div class="col-10">
+                            <h2>All Orders</h2>
+                        </div>
+                        <div class="col-2">
+                            <form>
+                                <select onchange="" class="form-select">
+                                    <option>Filter</option>
+                                    <?php
+                                $select_query = "SELECT order_status FROM orders";
+                                $execute = mysqli_query($connection, $select_query);
+                                while($fetch_order_status = mysqli_fetch_array($execute)){
+                            ?>
+                                    <option value="<?php echo $fetch_order_status['order_status']?>"><?php echo $fetch_order_status['order_status']?></option>
+                                    <?php
+                                    }
+                                    ?>
+
+                                </select>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive-sm">
-                        <table class="table text-center table-bordered table-centered mb-0">
-                            <thead>
-                                <tr>
-                                    <th>Index</th>
-                                    <th>Order ID</th>
-                                    <th>Order Amount</th>
-                                    <th>Order Status</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="table-user">
-                                        1
-                                    </td>
-                                    <td>OD115</td>
-                                    <td>$300</td>
-                                    <td><span class="badge bg-pink-subtle text-pink">Pending</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <button class="btn btn-outline-primary btn-sm me-1">Shipped</button>
-                                        <button class="btn btn-outline-success btn-sm me-1">Delivered</button>
-                                        <button class="btn btn-outline-danger btn-sm">Cancelled</button>
-                                    </td>
-                                </tr>
+            </div>
 
-                            </tbody>
-                        </table>
-                    </div> <!-- end table-responsive-->
+            <div class="card-body">
+                <div class="table-responsive-sm">
+                    <table class="table text-center table-bordered table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Order ID</th>
+                                <th>Order Amount</th>
+                                <th>Order Status</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $index = 1;
+                                $select_query = "SELECT * FROM orders";
+                                $execute = mysqli_query($connection, $select_query);
+                                while($fetch_orders = mysqli_fetch_array($execute)){
+                                ?>
+                            <tr>
+                                <td class="table-user">
+                                    <?php echo $index++?>
+                                </td>
+                                <td>OD<?php echo $fetch_orders['order_generated_id']?></td>
+                                <td>RS/<?php echo $fetch_orders['order_amount']?></td>
 
-                </div> <!-- end card body-->
-            </div> <!-- end card -->
-        </div>
+                                <?php
+                                    if($fetch_orders['order_status'] == "pending"){
+                                    ?>
+                                <td><span
+                                        class="badge bg-pink-subtle text-pink"><?php echo $fetch_orders['order_status']?></span>
+                                </td>
+                                <?php
+                                    }
+                                    else if($fetch_orders['order_status'] == "shipped"){
+                                    ?>
+                                <td><span
+                                        class="badge bg-success-subtle text-success"><?php echo $fetch_orders['order_status']?></span>
+                                </td>
+                                <?php
+                                }
+                                else {
+                                    ?>
+                                <td><span
+                                        class="badge bg-info-subtle text-info"><?php echo $fetch_orders['order_status']?></span>
+                                </td>
+                                <?php
+                                    }
+                                    ?>
+
+                                <td class="text-center">
+                                    <button class="btn btn-outline-primary btn-sm me-1">Shipped</button>
+                                    <button class="btn btn-outline-success btn-sm me-1">Delivered</button>
+                                    <button class="btn btn-outline-danger btn-sm">Cancelled</button>
+                                </td>
+                            </tr>
+                            <?php
+                                }
+                                ?>
+
+                        </tbody>
+                    </table>
+                </div> <!-- end table-responsive-->
+
+            </div> <!-- end card body-->
+        </div> <!-- end card -->
     </div>
+</div>
 
-    <?php
+<?php
     include("./base/footer.php");
     ?>
