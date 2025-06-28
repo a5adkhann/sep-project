@@ -1,5 +1,6 @@
 	<?php
 	include("./base/mainHeader.php");
+	
 	?>
 	<!-- Slider -->
 	<section class="section-slide">

@@ -1,5 +1,14 @@
 <?php
 include("./db/db_connection.php");
+
+if(!isset($_SESSION['admin_email'])){
+    echo "
+    <script>
+    location.assign('../login.php');
+    </script>
+    ";
+}
+
 ?>
 
 <!DOCTYPE html>

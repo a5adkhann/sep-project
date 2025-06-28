@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2025 at 07:49 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jun 28, 2025 at 02:08 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(256) NOT NULL,
   `category_image` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categories`
@@ -53,7 +53,7 @@ CREATE TABLE `orders` (
   `order_generated_id` int(11) NOT NULL,
   `order_amount` int(11) NOT NULL,
   `order_status` varchar(256) NOT NULL DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
@@ -77,17 +77,40 @@ CREATE TABLE `products` (
   `product_category_id` int(11) NOT NULL,
   `product_stock_quantity` varchar(256) NOT NULL,
   `product_image` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_price`, `product_category_id`, `product_stock_quantity`, `product_image`) VALUES
-(2, 'Esprit Ruffle Shirt', 'Elevate your wardrobe with the timeless elegance of the Esprit Ruffle Shirt. Crafted from soft, breathable fabric, this shirt combines comfort with a touch of sophistication. ', '900', 2, '2', 'product-01.jpg'),
-(3, 'Herschel supply', 'Herschel Supply is renowned for its timeless blend of classic style and modern functionality. Crafted with high-quality materials and attention to detail, Herschel backpacks and accessories offer both durability and a sleek, minimalist design that suits ev', '1299', 2, '2', 'product-02.jpg'),
-(4, 'Vintage Inspired Classic', 'Vintage Inspired Classic pieces bring a timeless charm that merges nostalgic design with modern-day quality. These products capture the essence of past eras with carefully crafted details, muted tones, and durable materials that stand the test of time. ', '1799', 5, '1', 'product-06.jpg'),
-(5, 'Checked Shirt', 'The Checked Shirt is a timeless wardrobe staple that effortlessly blends casual comfort with classic style. Featuring a versatile checkered pattern, it adds a touch of rustic charm to any outfit. Made from soft, breathable fabric, this shirt is perfect for', '1799', 5, '1', 'product-11.jpg');
+(2, 'Esprit Ruffle Shirt', 'Elevate your wardrobe with the timeless elegance of the Esprit Ruffle Shirt. Crafted from soft, breathable fabric, this shirt combines comfort with a touch of sophistication. ', '900', 2, '50', 'product-01.jpg'),
+(3, 'Herschel supply', 'Herschel Supply is renowned for its timeless blend of classic style and modern functionality. Crafted with high-quality materials and attention to detail, Herschel backpacks and accessories offer both durability and a sleek, minimalist design that suits ev', '1299', 2, '20', 'product-02.jpg'),
+(4, 'Vintage Inspired Classic', 'Vintage Inspired Classic pieces bring a timeless charm that merges nostalgic design with modern-day quality. These products capture the essence of past eras with carefully crafted details, muted tones, and durable materials that stand the test of time. ', '1799', 5, '10', 'product-06.jpg'),
+(5, 'Checked Shirt', 'The Checked Shirt is a timeless wardrobe staple that effortlessly blends casual comfort with classic style. Featuring a versatile checkered pattern, it adds a touch of rustic charm to any outfit. Made from soft, breathable fabric, this shirt is perfect for', '1799', 5, '0', 'product-11.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(256) NOT NULL,
+  `user_email` varchar(256) NOT NULL,
+  `user_password` varchar(256) NOT NULL,
+  `user_role` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`) VALUES
+(1, 'Asad Khan', 'asad@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1),
+(2, 'Talib Hussain', 'talib@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1),
+(4, 'admin', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0);
 
 --
 -- Indexes for dumped tables
@@ -112,6 +135,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`product_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -132,6 +161,12 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `products`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

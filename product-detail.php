@@ -39,11 +39,12 @@ include("./base/header.php");
 				<div class="col-md-6 col-lg-5 p-b-30">
 
 					<form action="shoping-cart.php" method="POST">
-						<input type="hidden" name = "s_id" value="<?php echo $fetch_product_detail['product_id']?>">
-							<input type="hidden" name = "s_product" value="<?php echo $fetch_product_detail['product_name']?>">
-							<input type="hidden" name = "s_price" value="<?php echo $fetch_product_detail['product_price']?>">
-							<input type="hidden" name = "s_image" value="<?php echo $fetch_product_detail['product_image']?>">
-							<input type="hidden" name = "s_detail" value="<?php echo $fetch_product_detail['product_description']?>">
+						<input type="hidden" name = "product_id" value="<?php echo $fetch_product_detail['product_id']?>">
+							<input type="hidden" name = "product_name" value="<?php echo $fetch_product_detail['product_name']?>">
+							<input type="hidden" name = "product_price" value="<?php echo $fetch_product_detail['product_price']?>">
+							<input type="hidden" name = "product_image" value="<?php echo $fetch_product_detail['product_image']?>">
+							<input type="hidden" name = "product_description" value="<?php echo $fetch_product_detail['product_description']?>">
+							<input type="hidden" name = "product_quantity" value="1">
 
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
