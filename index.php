@@ -104,7 +104,7 @@
 	                <div class="block1 wrap-pic-w">
 	                    <img src="./admin/uploads/<?php echo $fetch_categories['category_image']?>" alt="IMG-BANNER">
 
-	                    <a href="product.html"
+	                    <a href="products.php?id=<?php echo $fetch_categories['category_id']?>"
 	                        class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
 	                        <div class="block1-txt-child1 flex-col-l">
 	                            <span class="block1-name ltext-102 trans-04 p-b-8">
@@ -148,25 +148,18 @@
 	                    All Products
 	                </button>
 
-	                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-	                    Women
+					<?php
+					$select_query = "SELECT * FROM categories";
+					$execute = mysqli_query($connection, $select_query);
+					while($fetch_categories = mysqli_fetch_array($execute)){
+					?>
+	                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".<?php echo strtolower($fetch_categories['category_name'])?>">
+	                    <?php echo $fetch_categories['category_name']?>
 	                </button>
+					<?php
+					}
+					?>
 
-	                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-	                    Men
-	                </button>
-
-	                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-	                    Bag
-	                </button>
-
-	                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-	                    Shoes
-	                </button>
-
-	                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-	                    Watches
-	                </button>
 	            </div>
 
 	            <div class="flex-w flex-c-m m-tb-10">
@@ -394,12 +387,13 @@
 	        <div class="row isotope-grid">
 				
 			<?php
-			$select_query = "SELECT * FROM products";
+			$select_query = "SELECT * FROM products INNER JOIN categories ON category_id = product_category_id";
 			$execute = mysqli_query($connection, $select_query);
 			while($fetch_products = mysqli_fetch_array($execute)){
 
 			?>
-	            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+			<a href="product-detail.php?id=<?php echo $fetch_products['product_id']?>">
+	            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php echo strtolower($fetch_products['category_name'])?>">
 	                <!-- Block2 -->
 	                <div class="block2">
 	                    <div class="block2-pic hov-img0 label-new" data-label="New">
@@ -407,7 +401,7 @@
 
 	                        <a href="#"
 	                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-	                            Quick View
+	                            Add To Cart
 	                        </a>
 	                    </div>
 
@@ -433,21 +427,11 @@
 	                    </div>
 	                </div>
 	            </div>
+			</a>
 				<?php
 				}
 				?>
 
-	        </div>
-
-	        <!-- Pagination -->
-	        <div class="flex-c-m flex-w w-full p-t-38">
-	            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-	                1
-	            </a>
-
-	            <a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-	                2
-	            </a>
 	        </div>
 	    </div>
 	</section>

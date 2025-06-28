@@ -18,6 +18,9 @@ if (isset($_POST['add_product'])) {
             $insert_query = "INSERT INTO products (product_name, product_description, product_price, product_category_id, product_stock_quantity, product_image)
                        VALUES ('$product_name', '$product_description', '$product_price', '$product_category', '$product_stock_quantity', '$product_image')";
             mysqli_query($connection, $insert_query);
+            echo "<script>
+            location.assign('view_product.php');
+            </script>";
         }
     }
 }
@@ -29,8 +32,9 @@ if (isset($_POST['add_product'])) {
         <!-- Start Content-->
         <div class="container-fluid">
             <div class="card mt-3">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>Add Product</h2>
+                    <a href="view_products.php">View Products</a>
                 </div>
                 <div class="card-body">
                     <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data" method="POST">

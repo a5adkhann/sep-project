@@ -12,6 +12,9 @@ if(isset($_POST['add_category'])){
           if(move_uploaded_file($imageTmpName,$destination)){
     $insert_query = "INSERT INTO `categories`(category_name, category_image) VALUES('$category_name', '$category_image')";
     $execute = mysqli_query($connection, $insert_query);
+    echo "<script>
+            location.assign('view_category.php');
+            </script>";
   }
 }
 }
@@ -23,8 +26,9 @@ if(isset($_POST['add_category'])){
         <!-- Start Content-->
         <div class="container-fluid">
             <div class="card mt-3">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>Add Category</h2>
+                    <a href="view_categories.php">View Categories</a>
                 </div>
                 <div class="card-body">
                     <form class="needs-validation" novalidate enctype="multipart/form-data" method="POST">

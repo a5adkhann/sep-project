@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 27, 2025 at 09:02 PM
+-- Generation Time: Jun 28, 2025 at 07:49 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_image`) VALUES
 (2, 'Women', 'womenCategory.jpg'),
-(4, 'Best Accessories ', 'accessoriesCategory.jpg'),
+(4, 'Accessories ', 'accessoriesCategory.jpg'),
 (5, 'Men', 'manUpdateCategory.jpg');
 
 -- --------------------------------------------------------
@@ -84,7 +84,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_price`, `product_category_id`, `product_stock_quantity`, `product_image`) VALUES
-(2, 'Esprit Ruffle Shirt', 'Elevate your wardrobe with the timeless elegance of the Esprit Ruffle Shirt. Crafted from soft, breathable fabric, this shirt combines comfort with a touch of sophistication. ', '900', 2, '2', 'product-01.jpg');
+(2, 'Esprit Ruffle Shirt', 'Elevate your wardrobe with the timeless elegance of the Esprit Ruffle Shirt. Crafted from soft, breathable fabric, this shirt combines comfort with a touch of sophistication. ', '900', 2, '2', 'product-01.jpg'),
+(3, 'Herschel supply', 'Herschel Supply is renowned for its timeless blend of classic style and modern functionality. Crafted with high-quality materials and attention to detail, Herschel backpacks and accessories offer both durability and a sleek, minimalist design that suits ev', '1299', 2, '2', 'product-02.jpg'),
+(4, 'Vintage Inspired Classic', 'Vintage Inspired Classic pieces bring a timeless charm that merges nostalgic design with modern-day quality. These products capture the essence of past eras with carefully crafted details, muted tones, and durable materials that stand the test of time. ', '1799', 5, '1', 'product-06.jpg'),
+(5, 'Checked Shirt', 'The Checked Shirt is a timeless wardrobe staple that effortlessly blends casual comfort with classic style. Featuring a versatile checkered pattern, it adds a touch of rustic charm to any outfit. Made from soft, breathable fabric, this shirt is perfect for', '1799', 5, '1', 'product-11.jpg');
 
 --
 -- Indexes for dumped tables
@@ -128,7 +131,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -49,7 +49,7 @@ include("./admin/db/db_connection.php");
 				<nav class="limiter-menu-desktop p-l-45">
 					
 					<!-- Logo desktop -->		
-					<a href="#" class="logo">
+					<a href="index.php" class="logo">
 						<img src="images/icons/logo-02.png" alt="IMG-LOGO">
 					</a>
 

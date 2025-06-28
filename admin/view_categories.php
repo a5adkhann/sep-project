@@ -38,8 +38,9 @@ if(isset($_GET['delete_category'])){
         <!-- Start Content-->
         <div class="container-fluid">
             <div class="card mt-3">
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>All Categories</h2>
+                    <a href="add_category.php">Add Category</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
