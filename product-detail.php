@@ -37,6 +37,14 @@ include("./base/header.php");
 				</div>
 					
 				<div class="col-md-6 col-lg-5 p-b-30">
+
+					<form action="shoping-cart.php" method="POST">
+						<input type="hidden" name = "s_id" value="<?php echo $fetch_product_detail['product_id']?>">
+							<input type="hidden" name = "s_product" value="<?php echo $fetch_product_detail['product_name']?>">
+							<input type="hidden" name = "s_price" value="<?php echo $fetch_product_detail['product_price']?>">
+							<input type="hidden" name = "s_image" value="<?php echo $fetch_product_detail['product_image']?>">
+							<input type="hidden" name = "s_detail" value="<?php echo $fetch_product_detail['product_description']?>">
+
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 							<?php echo $fetch_product_detail['product_name']?>
@@ -54,13 +62,15 @@ include("./base/header.php");
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button name="addToCart" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
 									</button>
 								</div>
 							</div>	
 						</div>
 					</div>
+
+					</form>
 				</div>
 			</div>
 
