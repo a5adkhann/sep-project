@@ -15,14 +15,18 @@ if (isset($_POST['login'])) {
 
     if ($get_users['user_role'] == 0) {
 
+      $_SESSION['admin_id'] = $get_users['user_id'];
       $_SESSION['admin_email'] = $get_users['user_email'];
+      $_SESSION['admin_name'] = $get_users['user_name'];
       $_SESSION['admin_password'] = $get_users['user_password'];
       echo "<script>
         alert('Logged In Successfully');
         location.assign('./admin/index.php');
         </script>";
     } else {
+      $_SESSION['user_id'] = $get_users['user_id'];
       $_SESSION['user_email'] = $get_users['user_email'];
+      $_SESSION['user_name'] = $get_users['user_name'];
       $_SESSION['user_password'] = $get_users['user_password'];
       echo "<script>
         alert('Logged In Successfully');

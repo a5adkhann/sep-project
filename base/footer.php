@@ -305,8 +305,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</div>
 
+
 <!--===============================================================================================-->	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="./js/jquery-3.7.1.min.js"></script>
+
 <!--===============================================================================================-->
 	<script src="vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
@@ -403,6 +405,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			})
 		});
 	</script>
+
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

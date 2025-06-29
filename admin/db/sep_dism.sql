@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2025 at 02:08 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jun 29, 2025 at 07:54 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(256) NOT NULL,
   `category_image` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categories`
@@ -50,18 +50,21 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_image`) VALU
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
-  `order_generated_id` int(11) NOT NULL,
+  `order_generated_id` varchar(256) NOT NULL,
   `order_amount` int(11) NOT NULL,
-  `order_status` varchar(256) NOT NULL DEFAULT 'pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `order_status` varchar(256) NOT NULL DEFAULT 'pending',
+  `customer_id` int(11) NOT NULL,
+  `customer_name` varchar(256) NOT NULL,
+  `customer_number` varchar(256) NOT NULL,
+  `order_shipping_address` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `order_generated_id`, `order_amount`, `order_status`) VALUES
-(1, 115, 2500, 'shipped'),
-(2, 220, 2299, 'pending');
+INSERT INTO `orders` (`order_id`, `order_generated_id`, `order_amount`, `order_status`, `customer_id`, `customer_name`, `customer_number`, `order_shipping_address`) VALUES
+(1, 'ORD-6861091cd00ae', 1799, 'pending', 1, 'Asad Khan', '03482237240', 'House 5 Old Iqbalabad, Drigh Road Cantt Bazar , 75050 Karachi');
 
 -- --------------------------------------------------------
 
@@ -77,7 +80,7 @@ CREATE TABLE `products` (
   `product_category_id` int(11) NOT NULL,
   `product_stock_quantity` varchar(256) NOT NULL,
   `product_image` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `products`
@@ -100,17 +103,19 @@ CREATE TABLE `users` (
   `user_name` varchar(256) NOT NULL,
   `user_email` varchar(256) NOT NULL,
   `user_password` varchar(256) NOT NULL,
-  `user_role` int(11) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_role` int(11) NOT NULL DEFAULT 1,
+  `reset_token` varchar(255) DEFAULT NULL,
+  `reset_token_expiry` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`) VALUES
-(1, 'Asad Khan', 'asad@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1),
-(2, 'Talib Hussain', 'talib@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1),
-(4, 'admin', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0);
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`, `reset_token`, `reset_token_expiry`) VALUES
+(1, 'Asad Khan', 'asad@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1, '744d6aac7617b77cf120ca5bb13b0b2441a26a9530627762820086983b3292e1b765a52fd802859e0ddb28c96fe7086787df', '2025-06-29 20:50:27'),
+(2, 'Talib Hussain', 'talib@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1, NULL, NULL),
+(4, 'admin', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -154,7 +159,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`

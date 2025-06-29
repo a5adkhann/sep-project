@@ -29,9 +29,26 @@ if (isset($_POST['add_product'])) {
 <div class="content-page">
     <div class="content">
 
+    <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Product</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Products</a></li>
+                            <li class="breadcrumb-item active">Add Product</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
         <!-- Start Content-->
         <div class="container-fluid">
-            <div class="card mt-3">
+            <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2>Add Product</h2>
                     <a href="view_products.php">View Products</a>

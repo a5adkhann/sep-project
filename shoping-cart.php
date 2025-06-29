@@ -35,10 +35,68 @@ if (isset($_POST['addToCart'])) {
 	}
 }
 
+if(isset($_POST['checkout'])){
+	$user_id = $_SESSION['user_id']; 
+	$user_name = $_SESSION['user_name']; 
+
+	$order_shipping_address = $_POST['order_shipping_address'];
+	$customer_phone_number = $_POST['customer_phone_number'];
+
+	$order_generated_id = uniqid('ORD-');
+
+	$grand_total = 0;
+	 
+	foreach($_SESSION['cart'] as $key => $value){
+	$product_id = $value['product_id'];
+	$product_name = $value['product_name'];
+	$product_price = $value['product_price'];
+	$product_quantity = $value['product_quantity'];
+	$item_total = $product_quantity * $product_price;
+
+	$grand_total += $item_total;
+	}
+
+	$insert_query = "INSERT INTO `orders` (
+                order_generated_id,
+                order_amount,
+                customer_id,
+                customer_name,
+				customer_number,
+                order_shipping_address
+            ) VALUES (
+                '$order_generated_id',
+                '$item_total',
+                '$user_id',
+                '$user_name',
+                '$customer_phone_number',
+                '$order_shipping_address'
+            )";
+	$execute = mysqli_query($connection, $insert_query);
+	
+	echo "<script>alert('Your Order ($order_generated_id) has been placed successfully with total RS-$grand_total');
+        location.assign('index.php');
+        </script>";
+	unset($_SESSION['cart'][$key]);
+}
+
+
+if(isset($_GET['remove'])){
+	foreach($_SESSION['cart'] as $key => $value){
+		if($_GET['remove'] == $value['product_id']){
+			unset($_SESSION['cart'][$key]);
+			$_SESSION['cart'] = array_values($_SESSION['cart']);
+			echo "<script>
+			alert('Product removed successfully');
+			location.assign('shoping-cart.php');
+			</script>";
+		}
+	}
+}
+
 ?>
 
 <!-- Shoping Cart -->
-<form class="bg0 p-t-75 p-b-85">
+<form class="bg0 p-t-75 p-b-85" action="?checkout" method="POST">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -51,6 +109,7 @@ if (isset($_POST['addToCart'])) {
 								<th class="column-2">Quantity</th>
 								<th class="column-3">Price</th>
 								<th class="column-5">Total</th>
+								<th class="column-5">Action</th>
 							</tr>
 
 							<?php
@@ -73,6 +132,11 @@ if (isset($_POST['addToCart'])) {
 										
 										$grand_total += $value['product_quantity']*$value['product_price'];
 										?></td>
+										<td class="text-danger text-center">
+										<a href="?remove=<?php echo $value['product_id']?>">
+										Remove
+										</a>
+										</td>
 									</tr>
 							<?php
 								}
@@ -115,7 +179,11 @@ if (isset($_POST['addToCart'])) {
 
 						<div class="size-209">
 							<span class="mtext-110 cl2">
-								<?php echo $grand_total;?>
+								<?php 
+								if(isset($grand_total)){
+								echo $grand_total;
+								}
+								?>
 							</span>
 						</div>
 					</div>
@@ -129,35 +197,20 @@ if (isset($_POST['addToCart'])) {
 
 						<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 							<p class="stext-111 cl6 p-t-2">
-								There are no shipping methods available. Please double check your address, or contact us if you need any help.
+								COD(Cash On Delivery)
 							</p>
 
 							<div class="p-t-15">
 								<span class="stext-112 cl8">
-									Calculate Shipping
+									Shipping Info
 								</span>
 
 								<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-									<select class="js-select2" name="time">
-										<option>Select a country...</option>
-										<option>USA</option>
-										<option>UK</option>
-									</select>
-									<div class="dropDownSelect2"></div>
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="order_shipping_address" placeholder="Shipping Address" required>
 								</div>
 
 								<div class="bor8 bg0 m-b-12">
-									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
-								</div>
-
-								<div class="bor8 bg0 m-b-22">
-									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
-								</div>
-
-								<div class="flex-w">
-									<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-										Update Totals
-									</div>
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="number" name="customer_phone_number" placeholder="Number" required>
 								</div>
 
 							</div>
@@ -173,14 +226,35 @@ if (isset($_POST['addToCart'])) {
 
 						<div class="size-209 p-t-1">
 							<span class="mtext-110 cl2">
-								<?php echo $grand_total;?>
+								<?php 
+								if(isset($grand_total)){
+								echo $grand_total;
+								}
+								?>
 							</span>
 						</div>
 					</div>
 
-					<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-						Proceed to Checkout
-					</button>
+					
+					<?php
+						if(isset($_SESSION['user_email']) || isset($_SESSION['user_password']))
+						{
+
+						?>
+						<button name="checkout" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+							Proceed to Checkout
+						</button>
+						<?php
+						}
+						else {
+
+						?>
+						<a href="login.php" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+							Proceed to Checkout
+						</a>
+						<?php
+						}
+						?>
 				</div>
 			</div>
 		</div>
