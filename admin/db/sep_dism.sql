@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2025 at 07:54 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jun 30, 2025 at 02:28 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(256) NOT NULL,
   `category_image` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categories`
@@ -56,15 +56,19 @@ CREATE TABLE `orders` (
   `customer_id` int(11) NOT NULL,
   `customer_name` varchar(256) NOT NULL,
   `customer_number` varchar(256) NOT NULL,
-  `order_shipping_address` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `order_shipping_address` varchar(256) NOT NULL,
+  `order_placed_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`order_id`, `order_generated_id`, `order_amount`, `order_status`, `customer_id`, `customer_name`, `customer_number`, `order_shipping_address`) VALUES
-(1, 'ORD-6861091cd00ae', 1799, 'pending', 1, 'Asad Khan', '03482237240', 'House 5 Old Iqbalabad, Drigh Road Cantt Bazar , 75050 Karachi');
+INSERT INTO `orders` (`order_id`, `order_generated_id`, `order_amount`, `order_status`, `customer_id`, `customer_name`, `customer_number`, `order_shipping_address`, `order_placed_date`) VALUES
+(1, 'ORD-68627688391f0', 1800, 'shipped', 1, 'Asad Khan', '1231354', 'abc', '2025-06-30 12:20:24'),
+(2, 'ORD-68627702eae5b', 1299, 'pending', 1, 'Asad Khan', '6126526', 'abc', '2025-06-30 11:37:38'),
+(3, 'ORD-6862806a317ae', 1800, 'pending', 1, 'Asad Khan', '778672', 'vagv', '2025-06-30 12:17:46'),
+(4, 'ORD-686280b91f810', 1800, 'pending', 1, 'Asad Khan', '626', 'abc', '2025-06-30 12:19:05');
 
 -- --------------------------------------------------------
 
@@ -78,19 +82,19 @@ CREATE TABLE `products` (
   `product_description` varchar(256) NOT NULL,
   `product_price` varchar(256) NOT NULL,
   `product_category_id` int(11) NOT NULL,
-  `product_stock_quantity` varchar(256) NOT NULL,
+  `product_stock_quantity` int(11) NOT NULL,
   `product_image` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`product_id`, `product_name`, `product_description`, `product_price`, `product_category_id`, `product_stock_quantity`, `product_image`) VALUES
-(2, 'Esprit Ruffle Shirt', 'Elevate your wardrobe with the timeless elegance of the Esprit Ruffle Shirt. Crafted from soft, breathable fabric, this shirt combines comfort with a touch of sophistication. ', '900', 2, '50', 'product-01.jpg'),
-(3, 'Herschel supply', 'Herschel Supply is renowned for its timeless blend of classic style and modern functionality. Crafted with high-quality materials and attention to detail, Herschel backpacks and accessories offer both durability and a sleek, minimalist design that suits ev', '1299', 2, '20', 'product-02.jpg'),
-(4, 'Vintage Inspired Classic', 'Vintage Inspired Classic pieces bring a timeless charm that merges nostalgic design with modern-day quality. These products capture the essence of past eras with carefully crafted details, muted tones, and durable materials that stand the test of time. ', '1799', 5, '10', 'product-06.jpg'),
-(5, 'Checked Shirt', 'The Checked Shirt is a timeless wardrobe staple that effortlessly blends casual comfort with classic style. Featuring a versatile checkered pattern, it adds a touch of rustic charm to any outfit. Made from soft, breathable fabric, this shirt is perfect for', '1799', 5, '0', 'product-11.jpg');
+(2, 'Esprit Ruffle Shirt', 'Elevate your wardrobe with the timeless elegance of the Esprit Ruffle Shirt. Crafted from soft, breathable fabric, this shirt combines comfort with a touch of sophistication. ', '900', 2, 48, 'product-01.jpg'),
+(3, 'Herschel supply', 'Herschel Supply is renowned for its timeless blend of classic style and modern functionality. Crafted with high-quality materials and attention to detail, Herschel backpacks and accessories offer both durability and a sleek, minimalist design that suits ev', '1299', 2, 20, 'product-02.jpg'),
+(4, 'Vintage Inspired Classic', 'Vintage Inspired Classic pieces bring a timeless charm that merges nostalgic design with modern-day quality. These products capture the essence of past eras with carefully crafted details, muted tones, and durable materials that stand the test of time. ', '1799', 5, 10, 'product-06.jpg'),
+(5, 'Checked Shirt', 'The Checked Shirt is a timeless wardrobe staple that effortlessly blends casual comfort with classic style. Featuring a versatile checkered pattern, it adds a touch of rustic charm to any outfit. Made from soft, breathable fabric, this shirt is perfect for', '1799', 5, 0, 'product-11.jpg');
 
 -- --------------------------------------------------------
 
@@ -103,19 +107,17 @@ CREATE TABLE `users` (
   `user_name` varchar(256) NOT NULL,
   `user_email` varchar(256) NOT NULL,
   `user_password` varchar(256) NOT NULL,
-  `user_role` int(11) NOT NULL DEFAULT 1,
-  `reset_token` varchar(255) DEFAULT NULL,
-  `reset_token_expiry` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `user_role` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`, `reset_token`, `reset_token_expiry`) VALUES
-(1, 'Asad Khan', 'asad@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1, '744d6aac7617b77cf120ca5bb13b0b2441a26a9530627762820086983b3292e1b765a52fd802859e0ddb28c96fe7086787df', '2025-06-29 20:50:27'),
-(2, 'Talib Hussain', 'talib@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1, NULL, NULL),
-(4, 'admin', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0, NULL, NULL);
+INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_password`, `user_role`) VALUES
+(1, 'Asad Khan', 'asad@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1),
+(2, 'Talib Hussain', 'talib@gmail.com', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2', 1),
+(4, 'admin', 'admin@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0);
 
 --
 -- Indexes for dumped tables
@@ -159,7 +161,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
