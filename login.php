@@ -102,6 +102,11 @@ if (isset($_POST['login'])) {
           name="login">Login</button>
       </form>
 
+      <p class="mt-6 text-sm text-center text-gray-600">
+        Forget Password?
+        <a href="recover_password.php" class="text-blue-600 font-medium hover:underline">Recover</a>
+      </p>
+
       <!-- Register redirect -->
       <p class="mt-6 text-sm text-center text-gray-600">
         Don't have an account?
