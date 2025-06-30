@@ -155,6 +155,15 @@ if (isset($_GET['updateCancelled'])) {
 
                         </tbody>
                     </table>
+                    <?php
+                    if (isset($_POST['findByDate'])) {
+                        echo '<a href="export_orders.php?start=' . $start_date . '&end=' . $end_date . '" class="btn btn-info mt-2 mr-1">Export Filtered Orders</a>';
+                    } else {
+                        echo '<a href="export_orders.php" class="btn btn-info mt-2 mr-1">Export All Orders</a>';
+                    }
+                    ?>
+
+
                 </div> <!-- end table-responsive-->
 
             </div> <!-- end card body-->
