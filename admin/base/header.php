@@ -138,7 +138,7 @@ if(!isset($_SESSION['admin_email'])){
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
                         
                             <!-- item-->
-                            <a href="auth-logout-2.html" class="dropdown-item">
+                            <a href="logout.php" class="dropdown-item">
                                 <i class="ri-logout-box-line fs-18 align-middle me-1"></i>
                                 <span>Logout</span>
                             </a>
@@ -228,7 +228,11 @@ if(!isset($_SESSION['admin_email'])){
                         </a>
                         <div class="collapse" id="sidebarOrders">
                             <ul class="side-nav-second-level">
-                                <li><a href="./orders_info.php">All Orders</a></li>
+                                <li><a href="./all_orders.php">All Orders</a></li>
+                                <li><a href="./pending_orders.php">Pending Orders</a></li>
+                                <li><a href="./shipped_orders.php">Shipped Orders</a></li>
+                                <li><a href="./delivered_orders.php">Delivered Orders</a></li>
+                                <li><a href="./cancelled_orders.php">Cancelled Orders</a></li>
                             </ul>
                         </div>
                     </li>

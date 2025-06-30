@@ -10,6 +10,7 @@ include("./base/header.php");
                     <th scope="col">Index</th>
                     <th scope="col">Order ID</th>
                     <th scope="col">Order Amount</th>
+                    <th scope="col">Order Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +25,7 @@ include("./base/header.php");
                     <th scope="row"><?php echo $serial++; ?></th>
                     <td><?php echo htmlspecialchars($fetch_customers_orders['order_generated_id']); ?></td>
                     <td><?php echo htmlspecialchars($fetch_customers_orders['order_amount']); ?> RS</td>
+                    <td><?php echo htmlspecialchars($fetch_customers_orders['order_status']); ?></td>
                 </tr>
                 <?php
 }

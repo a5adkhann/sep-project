@@ -35,49 +35,59 @@ if (isset($_POST['addToCart'])) {
 	}
 }
 
-if(isset($_POST['checkout'])){
-	$user_id = $_SESSION['user_id']; 
-	$user_name = $_SESSION['user_name']; 
+if (isset($_POST['checkout'])) {
+    $user_id = $_SESSION['user_id']; 
+    $user_name = $_SESSION['user_name']; 
 
-	$order_shipping_address = $_POST['order_shipping_address'];
-	$customer_phone_number = $_POST['customer_phone_number'];
+    $order_shipping_address = $_POST['order_shipping_address'];
+    $customer_phone_number = $_POST['customer_phone_number'];
 
-	$order_generated_id = uniqid('ORD-');
+    $order_generated_id = uniqid('ORD-');
 
-	$grand_total = 0;
-	 
-	foreach($_SESSION['cart'] as $key => $value){
-	$product_id = $value['product_id'];
-	$product_name = $value['product_name'];
-	$product_price = $value['product_price'];
-	$product_quantity = $value['product_quantity'];
-	$item_total = $product_quantity * $product_price;
+    $grand_total = 0;
 
-	$grand_total += $item_total;
-	}
+    foreach ($_SESSION['cart'] as $key => $value) {
+        $product_id = $value['product_id'];
+        $product_price = $value['product_price'];
+        $product_quantity = $value['product_quantity'];
+        $item_total = $product_quantity * $product_price;
 
-	$insert_query = "INSERT INTO `orders` (
-                order_generated_id,
-                order_amount,
-                customer_id,
-                customer_name,
-				customer_number,
-                order_shipping_address
-            ) VALUES (
-                '$order_generated_id',
-                '$item_total',
-                '$user_id',
-                '$user_name',
-                '$customer_phone_number',
-                '$order_shipping_address'
-            )";
-	$execute = mysqli_query($connection, $insert_query);
-	
-	echo "<script>alert('Your Order ($order_generated_id) has been placed successfully with total RS-$grand_total');
+        $grand_total += $item_total;
+
+        $update_query = "UPDATE products SET product_stock_quantity = product_stock_quantity - $product_quantity WHERE product_id = $product_id";
+        mysqli_query($connection, $update_query);
+    }
+
+    // Insert into orders table
+    $insert_query = "INSERT INTO `orders` (
+        order_generated_id,
+        order_amount,
+        customer_id,
+        customer_name,
+        customer_number,
+        order_shipping_address
+    ) VALUES (
+        '$order_generated_id',
+        '$grand_total',
+        '$user_id',
+        '$user_name',
+        '$customer_phone_number',
+        '$order_shipping_address'
+    )";
+
+    $execute = mysqli_query($connection, $insert_query);
+
+    if ($execute) {
+        unset($_SESSION['cart']);
+
+        echo "<script>alert('Your Order ($order_generated_id) has been placed successfully with total RS-$grand_total');
         location.assign('index.php');
         </script>";
-	unset($_SESSION['cart'][$key]);
+    } else {
+        echo "Error placing order: " . mysqli_error($connection);
+    }
 }
+
 
 
 if(isset($_GET['remove'])){

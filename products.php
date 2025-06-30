@@ -57,7 +57,6 @@ include("./base/header.php");
                 }
             }
 
-            // Final SQL with optional category + price filters
             if (isset($_GET['id'])) {
                 $category_id = $_GET['id'];
                 $select_query = "SELECT * FROM products 
@@ -70,6 +69,8 @@ include("./base/header.php");
             }
 
             $execute = mysqli_query($connection, $select_query);
+
+            if(mysqli_num_rows($execute) > 0){
             while ($fetch_product = mysqli_fetch_array($execute)) {
             ?>
                 <form method="POST" action="shoping-cart.php">
@@ -108,7 +109,15 @@ include("./base/header.php");
                         </div>
                     </a>
                 </form>
-            <?php } ?>
+            <?php }
+            } 
+            else {
+                echo "<script>
+                alert('Product not available yet.');
+                location.assign('index.php');
+                </script>";
+            }
+            ?>
         </div>
     </div>
 </div>

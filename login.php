@@ -41,6 +41,11 @@ if (isset($_POST['login'])) {
         location.assign('index.php');
         </script>";
   }
+  else {
+    echo "<script>
+        alert('Logged In Successfully');
+        </script>";
+  }
 }
 ?>
 

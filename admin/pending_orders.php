@@ -10,7 +10,7 @@ include("./base/header.php");
                 <div class="row">
                     <div class="card-header row">
                         <div class="col-10">
-                            <h2>All Orders</h2>
+                            <h2>Pending Orders</h2>
                         </div>
                         <div class="col-2">
                             <form>
@@ -42,21 +42,23 @@ include("./base/header.php");
                                 <th>Order ID</th>
                                 <th>Order Amount</th>
                                 <th>Order Status</th>
-                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                                 $index = 1;
-                                $select_query = "SELECT * FROM orders";
+                                $select_query = "SELECT * FROM orders WHERE order_status = 'pending'";
                                 $execute = mysqli_query($connection, $select_query);
+
+                                $count_pending = mysqli_num_rows($execute);
+                                if($count_pending > 0){
                                 while($fetch_orders = mysqli_fetch_array($execute)){
                                 ?>
                             <tr>
                                 <td class="table-user">
                                     <?php echo $index++?>
                                 </td>
-                                <td>OD<?php echo $fetch_orders['order_generated_id']?></td>
+                                <td><?php echo $fetch_orders['order_generated_id']?></td>
                                 <td>RS/<?php echo $fetch_orders['order_amount']?></td>
 
                                 <?php
@@ -82,14 +84,15 @@ include("./base/header.php");
                                 <?php
                                     }
                                     ?>
-
-                                <td class="text-center">
-                                    <button class="btn btn-outline-primary btn-sm me-1">Shipped</button>
-                                    <button class="btn btn-outline-success btn-sm me-1">Delivered</button>
-                                    <button class="btn btn-outline-danger btn-sm">Cancelled</button>
-                                </td>
                             </tr>
                             <?php
+                                }
+                                }
+                                else {
+                                    echo "<script>
+                                    alert('No pending orders');
+                                    location.assign('all_orders.php');
+                                    </script>";
                                 }
                                 ?>
 
