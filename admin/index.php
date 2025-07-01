@@ -1,5 +1,5 @@
         <?php
-            include("./base/header.php");
+        include("./base/header.php");
         ?>
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
@@ -23,13 +23,12 @@
                                     </ol>
                                 </div>
                                 <h4 class="page-title">Welcome <?php
-                                if(isset($_SESSION['admin_name'])){
-                                    echo $_SESSION['admin_name'];
-                                }
-                                else {
-                                    echo " ";
-                                }
-                                ?></h4>
+                                                                if (isset($_SESSION['admin_name'])) {
+                                                                    echo $_SESSION['admin_name'];
+                                                                } else {
+                                                                    echo " ";
+                                                                }
+                                                                ?></h4>
                             </div>
                         </div>
                     </div>
@@ -48,26 +47,26 @@
                                         <i class="ri-eye-line widget-icon"></i>
                                     </div>
                                     <h6 class="text-uppercase mt-0" title="Customers">Categoeies of Products</h6>
-                                    <h2 class="my-2"><?php echo $count_categories;?></h2>
+                                    <h2 class="my-2"><?php echo $count_categories; ?></h2>
                                     <p class="mb-0">
 
                                         <span class="badge bg-white bg-opacity-10 me-1">
                                             <?php
                                             $select_query = "SELECT * FROM categories";
                                             $execute = mysqli_query($connection, $select_query);
-                                            while($get_categories = mysqli_fetch_array($execute)){
-                                                echo " ".$get_categories['category_name'];
+                                            while ($get_categories = mysqli_fetch_array($execute)) {
+                                                echo " " . $get_categories['category_name'];
                                             }
                                             ?>
-                                        <span>
+                                            <span>
 
                                     </p>
                                 </div>
                             </div>
                         </div> <!-- end col-->
-                        
 
-                         <?php
+
+                        <?php
                         $select_query = "SELECT * FROM products";
                         $execute = mysqli_query($connection, $select_query);
                         $count_products = mysqli_num_rows($execute);
@@ -79,14 +78,14 @@
                                         <i class="ri-wallet-2-line widget-icon"></i>
                                     </div>
                                     <h6 class="text-uppercase mt-0" title="Customers">Products</h6>
-                                    <h2 class="my-2"><?php echo $count_products;?></h2>
+                                    <h2 class="my-2"><?php echo $count_products; ?></h2>
                                     <p class="mb-0">
                                         <span class="badge bg-white bg-opacity-10 me-1">Shirts Watches Shoes</span>
                                     </p>
                                 </div>
                             </div>
                         </div> <!-- end col-->
-                        
+
                         <?php
                         $select_query = "SELECT * FROM orders";
                         $execute = mysqli_query($connection, $select_query);
@@ -99,7 +98,7 @@
                                         <i class="ri-shopping-basket-line widget-icon"></i>
                                     </div>
                                     <h6 class="text-uppercase mt-0" title="Customers">Orders</h6>
-                                    <h2 class="my-2"><?php echo $count_orders;?></h2>
+                                    <h2 class="my-2"><?php echo $count_orders; ?></h2>
                                     <p class="mb-0">
                                         <span class="badge bg-white bg-opacity-25 me-1">-5.75%</span>
                                         <span class="text-nowrap">Since last month</span>
@@ -120,7 +119,7 @@
                                         <i class="ri-group-2-line widget-icon"></i>
                                     </div>
                                     <h6 class="text-uppercase mt-0" title="Customers">Users</h6>
-                                    <h2 class="my-2"><?php echo $count_users-1;?></h2>
+                                    <h2 class="my-2"><?php echo $count_users - 1; ?></h2>
                                     <p class="mb-0">
                                         <span class="badge bg-white bg-opacity-10 me-1">8.21%</span>
                                         <span class="text-nowrap">Since last month</span>
@@ -454,8 +453,6 @@
 
             </div>
             <!-- content -->
-             <?php
+            <?php
             include("./base/footer.php");
-        ?>
-
-         
+            ?>

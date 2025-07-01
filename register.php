@@ -48,17 +48,17 @@ if(isset($_POST['register'])){
       <form class="space-y-4" method="POST">
         <div>
           <label class="block text-sm font-medium text-gray-700">Full Name</label>
-          <input type="text" placeholder="Enter your name" class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" name="name" required />
+          <input type="text" placeholder="Enter your name" class="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400" name="name" required />
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700">Email address</label>
-          <input type="email" placeholder="Enter your email" class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" name="email" required/>
+          <input type="email" placeholder="Enter your email" class="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400" name="email" required/>
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700">Password</label>
-          <input type="password" placeholder="Enter your password" class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400" name="password" required/>
+          <input type="password" placeholder="Enter your password" class="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400" name="password" required/>
         </div>
 
         <div class="flex items-center">

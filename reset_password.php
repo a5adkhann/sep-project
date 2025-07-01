@@ -77,7 +77,7 @@ include('./admin/db/db_connection.php');
         $token = $_SESSION['token'];
         $Email = $_SESSION['email'];
 
-        $hash = sha1( $psw , PASSWORD_DEFAULT );
+        $hash = sha1( $psw );
 
         $sql = mysqli_query($connection, "SELECT * FROM users WHERE user_email='$Email'");
         $query = mysqli_num_rows($sql);

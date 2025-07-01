@@ -1,15 +1,18 @@
 <?php
 include("./db/db_connection.php");
 
-header("Content-Type: application/vnd.ms-excel");
-header("Content-Disposition: attachment; filename=orders_report.xls");
+header("Content-Type: text/csv");
+header("Content-Disposition: attachment; filename=orders_report.csv");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-    echo "Index\tOrder ID\tAmount\tStatus\tOrder Date\n";
+$output = fopen('php://output', 'w');
 
+// Add headers to the CSV
+fputcsv($output, ["Index", "Order ID", "Amount", "Status", "Order Date"]);
+
+// Fetch data
 $index = 1;
-
 $query = "SELECT * FROM orders";
 
 if (isset($_GET['start']) && isset($_GET['end'])) {
@@ -20,11 +23,21 @@ if (isset($_GET['start']) && isset($_GET['end'])) {
 
 $result = mysqli_query($connection, $query);
 
+// Output data rows to the CSV file
 while ($order = mysqli_fetch_array($result)) {
-    echo $index++ . "\t";
-    echo $order['order_generated_id'] . "\t";
-    echo "RS/" . $order['order_amount'] . "\t";
-    echo $order['order_status'] . "\t";
+    $data = [
+        $index++,                         
+        $order['order_generated_id'],      
+        "RS/" . $order['order_amount'],    
+        $order['order_status'],            
+    ];
+
+    // Write the row to the CSV
+    fputcsv($output, $data);
 }
+
+// Close the output stream
+fclose($output);
+
 exit;
 ?>

@@ -86,19 +86,19 @@ if (isset($_POST['login'])) {
         <div>
           <label class="block text-sm font-medium text-gray-700">Email address</label>
           <input type="email" placeholder="Enter your email"
-            class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            class="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
             name="email" required />
         </div>
 
         <div>
           <label class="block text-sm font-medium text-gray-700">Password</label>
           <input type="password" placeholder="Enter your password"
-            class="w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+            class="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-400"
             name="password" required />
         </div>
 
         <button type="submit"
-          class="w-full bg-teal-500 text-white py-2 rounded-lg hover:bg-teal-600 transition"
+          class="w-full bg-teal-500 text-white py-2 hover:bg-teal-600 transition"
           name="login">Login</button>
       </form>
 
