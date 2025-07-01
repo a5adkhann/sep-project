@@ -43,7 +43,7 @@ if (isset($_POST['login'])) {
   }
   else {
     echo "<script>
-        alert('Logged In Successfully');
+        alert('Invalid Credentials');
         </script>";
   }
 }
