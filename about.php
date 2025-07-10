@@ -38,7 +38,7 @@ include("./base/header.php");
 				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
 					<div class="how-bor1 ">
 						<div class="hov-img0">
-							<img src="images/about-01.jpg" alt="IMG">
+							<img src="images/about.jpg" alt="IMG">
 						</div>
 					</div>
 				</div>
